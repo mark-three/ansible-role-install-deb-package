@@ -1,0 +1,43 @@
+---
+- name: "Check if {{ deb_package_display_name }} ({{ deb_package_name }}) package is installed"
+  command: "dpkg-query -W {{ deb_package_name }}"
+  register: deb_package_check_deb
+  failed_when: deb_package_check_deb.rc > 1
+  changed_when: deb_package_check_deb.rc == 1
+
+
+- name: Set the install_package flag to true/false
+  set_fact:
+    install_package: "{{deb_package_check_deb.rc == 1 or update_package}}"
+
+
+- name: Set the install_dependencies flag to true/false
+  set_fact:
+    install_dependencies: "{{ deb_package_dependencies|length|bool and install_package }}"
+
+
+- name: "Install {{ deb_package_display_name }} ({{ deb_package_name }}) dependencies"
+  ansible.builtin.apt:
+    name: "{{ deb_package_dependencies }}"
+    state: latest
+    update_cache: true
+  when: install_dependencies
+
+
+- name: "Create download path: {{ dest_folder_path }}"
+  ansible.builtin.file:
+    path: "{{ dest_folder_path }}"
+    state: directory
+  when: install_package
+
+
+- name: "Download {{ deb_package_display_name }} ({{ deb_package_name }}) deb package"
+  get_url:
+    url="{{ deb_package_url }}"
+    dest="{{ dest_file_path }}"
+  when: install_package
+
+
+- name: "Install {{ deb_package_display_name }} ({{ deb_package_name }}) deb package"
+  apt: deb="{{ dest_file_path }}"
+  when: install_package

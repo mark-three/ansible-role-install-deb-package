@@ -1,0 +1,11 @@
+---
+deb_package_display_name: "Deb Package Display Name"
+deb_package_name: deb_package_name
+deb_package_url: deb_package_url
+deb_package_file_name: "{{ deb_package_name }}-latest.deb"
+deb_package_dependencies: []
+
+update_package: false
+dest_folder_path: /tmp/ansible/deb
+
+dest_file_path: "{{ dest_folder_path }}/{{ deb_package_file_name }}"
