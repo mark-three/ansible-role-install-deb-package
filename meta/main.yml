@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  role_name: install_deb_package
+  author: Mark Smith
+  description: Role to download and install a deb package from a URL
+  license: MIT
+  #min_ansible_version: 2.6
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - system
+    - packages
+    - deb
+
+dependencies: []
