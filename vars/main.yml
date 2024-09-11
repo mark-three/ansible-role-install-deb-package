@@ -1,3 +1,6 @@
 ---
+# Calculated in tasks/main.yml and used to determine if the package should be installed, default False
 install_package: false
+
+# Calculated in tasks/main.yml and used to determine if the package dependencies should be installed, default False
 install_dependencies: false
