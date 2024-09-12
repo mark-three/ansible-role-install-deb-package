@@ -6,9 +6,9 @@ name: CI
     branches:
       - main
       - github-actions
-  workflow_dispatch:
-  schedule:
-    - cron: "1 1 * * 3"
+  # workflow_dispatch:
+  # schedule:
+  #   - cron: "1 1 * * 3"
 
 env:
   WORKING_DIR: 'mark-three.install_deb_packages'
@@ -46,7 +46,8 @@ jobs:
     strategy:
       matrix:
         distro:
-          # RHEL 8 / Rocky 8 will never work with latest Ansible 2.17+: https://github.com/ansible/ansible/issues/82068#issuecomment-2135279350
+          # RHEL 8 / Rocky 8 will never work with latest Ansible 2.17+
+          #   https://github.com/ansible/ansible/issues/82068#issuecomment-2135279350
           # - rockylinux8
           - rockylinux9
           - ubuntu2204
