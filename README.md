@@ -52,14 +52,14 @@ dest_file_path: "{{ dest_folder_path }}/{{ deb_package_file_name }}"
 
 ### Install requirements locally
 ```bash
-$ ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yml
 ```
 
 ## Example Playbook install-deb-packages.yml
 
 ```yaml
 ---
-- name: Download and install third-party deb package playbook
+- name: Download and install third-party deb packages playbook
   become: true
   roles:
     - role: install-deb-package

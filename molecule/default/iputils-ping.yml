@@ -1,0 +1,10 @@
+---
+- name: Install test deb package playbook
+  hosts: all
+  become: true
+  roles:
+    - role: third-party/install-deb-package
+      vars:
+        deb_package_display_name: "IP Utils - Ping"
+        deb_package_name: iputils-ping
+        deb_package_url: http://ftp.us.debian.org/debian/pool/main/i/iputils/iputils-ping_20240117-1_amd64.deb
