@@ -39,10 +39,26 @@ dest_folder_path: /tmp/ansible/deb
 dest_file_path: "{{ dest_folder_path }}/{{ deb_package_file_name }}"
 ```
 
+## Install Role locally
+
+### Create requirements.yml
+```yaml
+---
+- src: https://github.com/mark-three/ansible-role-install-deb-package
+  scm: git
+  version: main
+  name: mark-three.install_deb_package
+```
+
+### Install requirements locally
+```bash
+---
+$ ansible-galaxy install -r requirements.yml
+```
 
 ## Example Playbook install-deb-packages.yml
 
-```bash
+```yaml
 ---
 - name: Download and install third-party deb package playbook
   become: true
@@ -58,6 +74,12 @@ dest_file_path: "{{ dest_folder_path }}/{{ deb_package_file_name }}"
           - curl
 
     - role: install-deb-package
+      vars:
+        deb_package_display_name: "Beyond Compare"
+        deb_package_name: bcompare
+        deb_package_url: https://www.scootersoftware.com/files/bcompare-4.4.7.28397_amd64.deb
+
+    - role: mark-three.install_deb_package
       vars:
         deb_package_display_name: "Beyond Compare"
         deb_package_name: bcompare
