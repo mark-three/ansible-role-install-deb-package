@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: install_deb_package
+  namespace: mark-three
   author: Mark Smith
   description: Role to download and install a deb package from a URL
   license: MIT
