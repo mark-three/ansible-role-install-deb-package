@@ -52,7 +52,6 @@ dest_file_path: "{{ dest_folder_path }}/{{ deb_package_file_name }}"
 
 ### Install requirements locally
 ```bash
----
 $ ansible-galaxy install -r requirements.yml
 ```
 
